@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CryptoCoinConverter.Models.CurrencyQuotation>
+
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1 class="display-7">Enter the Crypto code to view exchange rate.</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CryptoQuotesView">
+          <input type="text" name="id" value="@ViewBag.Id"/>
+           <input type="submit" value="Exchange" class="btn btn-primary" />
+           
+        </form>
+    </div>
+</div>
+@if (Model != null)
+{
+<table class="table" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrencyCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+ 
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrencyCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    
+</table>
+}
+@if (Model == null)
+{
+    <div class="text-center">
+        <h1 class="display-7">No Data to dsiplay.</h1>
+    </div>
+}
